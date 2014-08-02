@@ -340,35 +340,6 @@ ChrisPipeDetector:
     minSize: 70
     noHough: 0
     samePipeThreshold: 0.2
-BinDetector:
-    AdaptiveThresholdWindow: 60
-    CalcTraining: 0
-    CompareBins: 0
-    MaxdistanceX: 90
-    MinSizeforContous: 270
-    MinimumFrames: 5
-    NumberofBinTypes: 8
-    NumberofImages: 5
-    SaveImages: 0
-    ThresholdForBinary: 20
-    UpperLimitforBin: 2
-    binLostFrames: 0
-    binSameThreshold: 0.25
-    debug: 0
-    filtredCMax: 255
-    filtredCMin: 145
-    filtredHMax: 97
-    filtredHMin: 95
-    filtredLMax: 154
-    filtredLMin: 41
-    maxAspectRatio: 2
-    maxSize: 800000
-    maxdistsanceY: 90
-    minAspectRatio: 0
-    minHessian: 250
-    redDilateIterations: 7
-    redErodeIterations: 1
-SonarChrisPipeDetector:
     BlurAmount: 5
     DistanceRef: 50
     HueShiftNumber: 130
@@ -391,3 +362,31 @@ SonarChrisPipeDetector:
     minSize: 70
     noHough: 0
     samePipeThreshold: 0.2
+BinDetector:
+    AdaptiveThresholdWindow: 60
+    CalcTraining: 0
+    CompareBins: 0
+    MaxdistanceX: 90
+    MinSizeforContous: 80
+    MinimumFrames: 5
+    NumberofBinTypes: 8
+    NumberofImages: 5
+    SaveImages: 0
+    ThresholdForBinary: 20
+    UpperLimitforBin: 2
+    binLostFrames: 0
+    binSameThreshold: 0.25
+    debug: 0
+    filtredCMax: 255
+    filtredCMin: 164
+    filtredHMax: 255
+    filtredHMin: 97
+    filtredLMax: 167
+    filtredLMin: 60
+    maxAspectRatio: 10
+    maxSize: 800000
+    maxdistsanceY: 90
+    minAspectRatio: 0
+    minHessian: 250
+    redDilateIterations: 9
+    redErodeIterations: 1

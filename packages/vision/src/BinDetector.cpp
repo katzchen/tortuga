@@ -1462,7 +1462,7 @@ buoy
 
 	if (m_allbins.MainBox_found == true)
 	{
-		printf("\n publising event\n \n");
+		printf("\n publising event");
 		publishFoundEventSURFAll();
 		m_BinoutlineFoundBefore = true;
 	}
@@ -2301,6 +2301,7 @@ void BinDetector::getSquareBlob(Mat src, bincontours* bins, int numberoftrackedc
 	//printf("\nFINAL Order %d, %d, %d, %d, Valu es= %f, %f, %f, %f",index1,index2,index3,index4,min1,min2,min3,min4);
 
 	//printf("\n seriously");
+/*
 		if (min1 < 35  && (index1 > -1))
 		{
 			drawContours(img_whitebalance, contours, bins[bestindex[index1]].contournumber, Scalar(0,0,255), 20, 8, hierarchy, 0, Point() );
@@ -2333,6 +2334,7 @@ void BinDetector::getSquareBlob(Mat src, bincontours* bins, int numberoftrackedc
 		{
 			drawContours(img_whitebalance, contours, bins[bestindex[index4]].contournumber, Scalar(0,255,0), 20, 8, hierarchy, 0, Point() );
 		}
+*/
 
 		//imshow("BinsNew",img_whitebalance);
 	//printf("\n DONE");
@@ -2926,17 +2928,38 @@ m_allbins.MainBox_found = false;
 				m_allbins.Box[0].Box_type = 0;
 			}
 
+
+
+		if (m_allbins.Box[0].Box_found==true)
+		{
+			drawContours(img_whitebalance, contours, bins[bestindex[lowerright]].contournumber, Scalar(0,0,255), 20, 8, hierarchy, 0, Point() );
+		}
+		if (m_allbins.Box[3].Box_found == true)
+		{
+			drawContours(img_whitebalance, contours, bins[bestindex[upperright]].contournumber, Scalar(255,255,0), 20, 8, hierarchy, 0, Point() );
+		}
+		if ( m_allbins.Box[2].Box_found == true)
+		{
+			drawContours(img_whitebalance, contours,bins[bestindex[lowerleft]].contournumber, Scalar(255,0,0), 20, 8, hierarchy, 0, Point() );
+		}
+		if (m_allbins.Box[1].Box_found == true)
+		{
+			drawContours(img_whitebalance, contours, bins[bestindex[upperleft]].contournumber, Scalar(0,255,255), 20, 8, hierarchy, 0, Point() );
+		}
+
+
+
 	//printf("\n afrer setting up m_allbins");
 	//printf("\n stupid");
 
-		if (lowerright > 0 || lowerleft > 0 || upperright > 0 || upperleft > 0)
-		{
-			m_allbins.MainBox_found = true;
-		}
-		else
-		{
-			m_allbins.MainBox_found = false;
-		}
+	//	if (lowerright > 0 || lowerleft > 0 || upperright > 0 || upperleft > 0)
+	//	{
+	//		m_allbins.MainBox_found = true;
+	//	}
+	//	else
+	//	{
+	//		m_allbins.MainBox_found = false;
+	//	}
 
 
 	/*
@@ -3376,10 +3399,20 @@ void BinDetector::publishFoundEventSURFAll()
 	//event->y = centerMainY;
 	//event->range = m_allbins.MainBox_width;
 	//event->angle = m_allbins.MainBox_angle;
+	//how many internal contours are there
+	int boxcount = 0;
+	for (int i= 0;i<4;i++)
+	{
+		if (m_allbins.Box[i].Box_found == true)
+			boxcount = boxcount+1;
+	}
+
+printf("\n Internal Contours Found = %d \n",boxcount);
+
 	math::Vector3 vectorbin0;
 	vectorbin0.x = centerMainX;
 	vectorbin0.y = centerMainY;
-	vectorbin0.z = 0;	
+	vectorbin0.z = boxcount;	
 //	event->angle = m_allbins.MainBox_angle;
 	//send rest of the bins now
 	if (m_allbins.Box[0].Box_found == true && (int)m_allbins.Box[0].Box_x > 0 && (int)m_allbins.Box[0].Box_x<640 && (int)m_allbins.Box[0].Box_y>0 
